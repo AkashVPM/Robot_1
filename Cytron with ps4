@@ -1,0 +1,41 @@
+#include "CytronMotorDriver.h"
+#include "PS4Controller.h"
+
+// Configure the motor driver.
+CytronMD motor(PWM_DIR, 16, 17);  // PWM = Pin 16, DIR = Pin 17.
+
+// // Variable to store motor speed
+// int joy = PS4.RStickY();
+// int rightMotorSpeed = map( PS4.RStickY(), -127, 127, -255, 255);
+
+// The setup routine runs once when you press reset.
+void setup() {
+  Serial.begin(115200);
+  PS4.begin();
+  Serial.println("Ready.");
+}
+
+void motorspeed(){
+
+}
+
+// Function to control motor speed based on PS4 controller input[]
+void loop() {
+      if (PS4.RStickY() > 50) {
+    Serial.println("Up Button 0");
+    // motorSpeed = 255;
+    motor.setSpeed(255); // Forward at full speed
+  } else if (PS4.RStickY() < -50) {
+    Serial.println("Up down");
+    // motorSpeed = -255;
+    motor.setSpeed(-255);
+     // Backward at full speed
+  } else  {
+    motor.setSpeed(0); // Stop
+  }
+}
+
+// The loop routine runs over and over again forever.
+// void loop() {
+
+// }
